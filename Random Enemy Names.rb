@@ -1,3 +1,16 @@
+=begin
+
+Random Names, by Feldherren
+
+Currently only for enemies.
+
+Known issues:
+If multiple examples of the same enemy are in the same troop, they can end up with the same randomly-picked name, because they're drawing from the same pool. They'll be labelled '[name] A', '[name] B' and so forth, unless you have a script that changes how RPG Maker deals with enemies with the same name.
+
+Notebox tags:
+  Enemies:
+    <random names: [name][, name][, name][, etc]>
+=end
 module Random_Names
   
 end
@@ -13,12 +26,12 @@ class Game_Enemy < Game_Battler
     end
   end
   
-  def get_random_name(names)
-    a = names.split(',')
-    return a[rand(a.length)].strip_or_self!
-  end
-  
   def strip_or_self!(str)
     str.strip! || str
+  end
+  
+  def get_random_name(names)
+    a = names.split(',')
+    return strip_or_self!(a[rand(a.length)])
   end
 end
