@@ -1,6 +1,10 @@
 =begin
 
 Random Names, by Feldherren
+v 1.0
+
+Changelog:
+  v1.0: first working version!
 
 Currently only for enemies.
 
