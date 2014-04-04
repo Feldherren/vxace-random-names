@@ -6,16 +6,20 @@ Changelog:
   v1.1: now supports lists
   v1.0: first working version!
 
-Currently only for enemies.
+Currently only for enemies. May add support for actors.
 
 Known issues:
 If multiple examples of the same enemy are in the same troop, they can end up with the same randomly-picked name, because they're drawing from the same pool. They'll be labelled '[name] A', '[name] B' and so forth, unless you have a script that changes how RPG Maker deals with enemies with the same name.
 
-Notebox tags:
-  Enemies:
+Usage:
+  In an enemy's notebox, enter one of the following tags:
     <random names: [name][, name][, name][, etc]>
+    <random name list: [list]>
+  [list] should correspond with the name of one of the lists in NAME_LISTS
 =end
 module Random_Names
+  # Add new lists here, similar to the default ones.
+  # Do not remove
   NAME_LISTS = {
       "male" => ['Hector', 'Eliwood', 'Marth', 'Seth', 'Ephraim', 'Travis', 'Jant', 'Rictor', 'Alphonse', 'Destin', 'Lans', 'Bob'],
       "female" => ['Lyn', 'Eirika', 'Misty', 'Eleanor', 'Serra', 'Rachel', 'Alice', 'Hester', 'Carol', 'Eve', 'Jane'],
