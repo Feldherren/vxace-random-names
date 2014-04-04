@@ -1,9 +1,9 @@
 =begin
 
-Random Names, by Feldherren
-v 1.0
+Random Names v1.1, by Feldherren
 
 Changelog:
+  v1.1: now supports lists
   v1.0: first working version!
 
 Currently only for enemies.
@@ -16,9 +16,11 @@ Notebox tags:
     <random names: [name][, name][, name][, etc]>
 =end
 module Random_Names
-  name_lists['male'] = ['Hector', 'Eliwood', 'Marth', 'Seth', 'Ephraim', 'Travis', 'Jant', 'Rictor', 'Alphonse', 'Destin', 'Lans', 'Neless', 'Bob']
-  name_lists['female'] = ['Lyn', 'Eirika', 'Misty', 'Eleanor', 'Serra']
-  name_lists['pets'] = ['Fluffy', 'Binky', 'Fuzzums', 'Tibbers', 'Precious']
+  NAME_LISTS = {
+      "male" => ['Hector', 'Eliwood', 'Marth', 'Seth', 'Ephraim', 'Travis', 'Jant', 'Rictor', 'Alphonse', 'Destin', 'Lans', 'Bob'],
+      "female" => ['Lyn', 'Eirika', 'Misty', 'Eleanor', 'Serra', 'Rachel', 'Alice', 'Hester', 'Carol', 'Eve', 'Jane'],
+      "pets" => ['Fluffy', 'Binky', 'Fuzzums', 'Tibbers', 'Precious', 'Rex']
+  }
 end
 
 class Game_Enemy < Game_Battler
@@ -31,7 +33,8 @@ class Game_Enemy < Game_Battler
       @original_name = get_random_name(match[1].to_s)
     end
     if (match = $data_enemies[@enemy_id].note.match( /^<random name list\s*:\s*([\w\d\s*]*)>/i ))
-      @original_name = name_lists[match[1].to_s][rand(name_lists[match[1].to_s].length)]
+      names = Random_Names::NAME_LISTS[match[1].to_s]
+      @original_name = names[rand(names.length)]
     end
   end
   
