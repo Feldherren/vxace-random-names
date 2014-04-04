@@ -16,7 +16,9 @@ Notebox tags:
     <random names: [name][, name][, name][, etc]>
 =end
 module Random_Names
-  
+  name_lists['male'] = ['Hector', 'Eliwood', 'Marth', 'Seth', 'Ephraim', 'Travis', 'Jant', 'Rictor', 'Alphonse', 'Destin', 'Lans', 'Neless', 'Bob']
+  name_lists['female'] = ['Lyn', 'Eirika', 'Misty', 'Eleanor', 'Serra']
+  name_lists['pets'] = ['Fluffy', 'Binky', 'Fuzzums', 'Tibbers', 'Precious']
 end
 
 class Game_Enemy < Game_Battler
@@ -27,6 +29,9 @@ class Game_Enemy < Game_Battler
     # if notebox tags present, do stuff
     if (match = $data_enemies[@enemy_id].note.match( /^<random names\s*:\s*([\w\d,\s*]*)>/i ))
       @original_name = get_random_name(match[1].to_s)
+    end
+    if (match = $data_enemies[@enemy_id].note.match( /^<random name list\s*:\s*([\w\d\s*]*)>/i ))
+      @original_name = name_lists[match[1].to_s][rand(name_lists[match[1].to_s].length)]
     end
   end
   
