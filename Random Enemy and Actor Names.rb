@@ -27,6 +27,31 @@ module Random_Names
   }
 end
 
+class Game_Actor < Game_Battler
+  # on creation, get notebox tags from data and pick a random name. Return that for original name instead
+  alias initialize_random initialize
+  def initialize(actor_id)
+    initialize_random(actor_id)
+    # if notebox tags present, do stuff
+    if (match = $data_actors[@actor_id].note.match( /^<random names\s*:\s*([\w\d,\s*]*)>/i ))
+      @name = get_random_name(match[1].to_s)
+    end
+    if (match = $data_actors[@actor_id].note.match( /^<random name list\s*:\s*([\w\d\s*]*)>/i ))
+      names = Random_Names::NAME_LISTS[match[1].to_s]
+      @name = names[rand(names.length)]
+    end
+  end
+  
+  def strip_or_self!(str)
+    str.strip! || str
+  end
+  
+  def get_random_name(names)
+    a = names.split(',')
+    return strip_or_self!(a[rand(a.length)])
+  end
+end
+
 class Game_Enemy < Game_Battler
   # on creation, get notebox tags from data and pick a random name. Return that for original name instead
   alias initialize_random initialize
