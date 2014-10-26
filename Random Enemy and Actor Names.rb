@@ -1,18 +1,18 @@
 =begin
 
-Random Names v1.1, by Feldherren
+Random Names v1.2, by Feldherren
 
 Changelog:
+  v1.2: now supports actors!
   v1.1: now supports lists
   v1.0: first working version!
 
-Currently only for enemies. May add support for actors.
-
 Known issues:
 If multiple examples of the same enemy are in the same troop, they can end up with the same randomly-picked name, because they're drawing from the same pool. They'll be labelled '[name] A', '[name] B' and so forth, unless you have a script that changes how RPG Maker deals with enemies with the same name.
+Multiple actors can end up with the same name, too.
 
 Usage:
-  In an enemy's notebox, enter one of the following tags:
+  In an actor or enemy notebox, enter one of the following tags:
     <random names: [name][, name][, name][, etc]>
     <random name list: [list]>
   [list] should correspond with the name of one of the lists in NAME_LISTS
