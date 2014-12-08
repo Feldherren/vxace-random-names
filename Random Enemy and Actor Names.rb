@@ -16,6 +16,8 @@ Usage:
     <random names: [name][, name][, name][, etc]>
     <random name list: [list]>
   [list] should correspond with the name of one of the lists in NAME_LISTS
+  
+This script is free for use in any project, though please add me to the credits and drop me an e-mail if you do use it.
 =end
 module Random_Names
   # Add new lists here, similar to the default ones.
