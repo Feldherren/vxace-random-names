@@ -1,6 +1,6 @@
 =begin
 
-Random Names v1.2, by Feldherren
+Random Names v1.2, by Feldherren (rpaliwoda@googlemail.com)
 
 Changelog:
   v1.2: now supports actors!
